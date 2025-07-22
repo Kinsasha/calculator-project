@@ -1,53 +1,47 @@
-function addFunc(numberOne, numberTwo) {
-  return numberOne + numberTwo;
-}
-function substractFunc(numberOne, numberTwo) {
-  return numberOne - numberTwo;
-}
-function multiplyFunc(numberOne, numberTwo) {
-  return numberOne * numberTwo;
-}
-function divideFunc(numberOne, numberTwo) {
-  return numberOne / numberTwo;
-}
+const toMainDisplay = document.querySelector(".main-display");
+const toTopDisplay = document.querySelector(".top-display");
 
-function operate(numOne, numTwo, operation) {
-  if (operation == "add") {
-    return addFunc(numOne, numTwo);
-  } else if (operation == "subtract") {
-    return addFunc(numOne, numTwo);
-  } else if (operation == "multiply") {
-    return addFunc(numOne, numTwo);
-  } else if (operation == "divide") {
-    return addFunc(numOne, numTwo);
-  }
-}
-// console.log(operate(2, 5, "add"));
-// const one = document.querySelector("#one");
-// const two = document.querySelector("#two");
-// const three = document.querySelector("#three");
-// const four = document.querySelector("#four");
-// const five = document.querySelector("#five");
-// const six = document.querySelector("#six");
-// const seven = document.querySelector("#seven");
-// const eight = document.querySelector("#eight");
-// const nine = document.querySelector("#nine");
-// const zero = document.querySelector("#zero");
-// const clear = document.querySelector("#clear");
-// const plus = document.querySelector("#plus");
-// const minus = document.querySelector("#minus");
-// const multiply = document.querySelector("#multiply");
-// const divide = document.querySelector("#divide");
-// const point = document.querySelector("#point");
+let mainDisplay = "";
+let topDisplay = "";
+let operator = "";
+
+const point = document.querySelector("#point");
 // const equal = document.querySelector("#equal");
 // const del = document.querySelector("#delete");
-// const display = document.querySelector("#display");
-
-const inputs = document.querySelector(".inputs");
 const numbers = document.querySelectorAll(".numbers");
+const parameters = document.querySelectorAll(".parameters");
 
-numbers.forEach((number) => {
-  number.addEventListener("click", () => {
-    inputs.value += number.textContent;
+const clear = document.querySelector("#clear");
+clear.addEventListener("click", clearScreen);
+function clearScreen() {
+  topDisplay = "";
+  mainDisplay = "";
+  toTopDisplay.textContent = "";
+  toMainDisplay.textContent = "";
+  // operator.textContent = '';
+}
+
+numbers.forEach((btn) => {
+  btn.addEventListener("click", (key) => {
+    handleNumber(key.target.textContent);
   });
 });
+
+function handleNumber(num) {
+  if (num.length < 12) {
+    mainDisplay += num;
+    toMainDisplay.textContent = mainDisplay;
+  }
+}
+
+parameters.forEach((key) => {
+  key.addEventListener("click", (param) => {
+    handleParameter(param.target.textContent);
+  });
+});
+function handleParameter(para) {
+  topDisplay += mainDisplay + " " + para;
+  toTopDisplay.textContent = topDisplay;
+  mainDisplay = "";
+  toMainDisplay.textContent = "";
+}
