@@ -45,6 +45,10 @@ body {
   background-color: rgb(254, 247, 247);
   border: 2px solid white;
 }
+.extras:hover {
+  background-color: rgb(254, 247, 247);
+  border: 2px solid white;
+}
 .numbers {
   display: flex;
   justify-content: center;
